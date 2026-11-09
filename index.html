@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUMON MORALES</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.jsp">Inicio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.jsp">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tips">Tips</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="ventajas">
+        <div class="text-center mt-4 mb-4">
+            <h4>Lista de tips sobre la IA Generativa</h4>
+        </div>  
+        
+        <%@include file="conexion.jsp"%>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            
+                            PreparedStatement st = conexion.prepareStatement("select * from tips_ia");
+                            ResultSet rs = st.executeQuery();
+                            while(rs.next()){
+                        %>  
+                        <tr>
+                            <td><%= rs.getInt("id_tip") %></td>
+                        </tr>
+                        <%
+                            } 
+                        %>
+                    </tbody>
+                </table>
+            </div>
+        </div>      
+    </div>      
+    
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
